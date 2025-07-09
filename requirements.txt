@@ -1,0 +1,17 @@
+# AI Racing Simulator - Requirements
+# This project has ZERO external dependencies - pure Python!
+
+# Optional development dependencies
+# Install with: pip install -r requirements-dev.txt
+
+# Core functionality requires only Python 3.7+
+# All dependencies are built-in Python modules:
+# - dataclasses (Python 3.7+)
+# - typing (Python 3.5+)
+# - enum (Python 3.4+)
+# - json (built-in)
+# - datetime (built-in)
+# - random (built-in)
+# - math (built-in)
+# - time (built-in)
+# - os (built-in)
