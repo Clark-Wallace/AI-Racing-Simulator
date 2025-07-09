@@ -18,12 +18,13 @@ def main():
     print("1. Quick Race Example")
     print("2. Custom Championship")
     print("3. Telemetry Analysis")
-    print("4. Complete System Showcase")
-    print("5. Grand Prix Finale")
-    print("6. Run All Tests")
+    print("4. Visual Race Demo (NEW!)")
+    print("5. Complete System Showcase")
+    print("6. Grand Prix Finale")
+    print("7. Run All Tests")
     print()
     
-    choice = input("Enter your choice (1-6): ").strip()
+    choice = input("Enter your choice (1-7): ").strip()
     
     if choice == "1":
         os.system("python examples/quick_race.py")
@@ -32,15 +33,17 @@ def main():
     elif choice == "3":
         os.system("python examples/telemetry_analysis.py")
     elif choice == "4":
+        os.system("python examples/simple_visual_race.py")
+    elif choice == "5":
         from visualization.showcase_finale import main as showcase_main
         showcase_main()
-    elif choice == "5":
+    elif choice == "6":
         from visualization.grand_prix_finale import main as finale_main
         finale_main()
-    elif choice == "6":
+    elif choice == "7":
         run_all_tests()
     else:
-        print("Invalid choice. Please select 1-6.")
+        print("Invalid choice. Please select 1-7.")
 
 def run_all_tests():
     """Run all test files"""

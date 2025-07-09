@@ -45,14 +45,26 @@ cd ai-racing-simulator
 
 ### Running the Simulator
 
-#### Complete System Demo
+#### Easy Demo Runner
 ```bash
-python -m src.visualization.showcase_finale
+python run_demo.py
 ```
 
-#### Ultimate Championship Experience
+This will show you a menu with options:
+1. Quick Race Example
+2. Custom Championship  
+3. Telemetry Analysis
+4. **Visual Race Demo (NEW!)** - See the cars race with ASCII graphics
+5. Complete System Showcase
+6. Grand Prix Finale
+7. Run All Tests
+
+#### Direct Examples
 ```bash
-python -m src.visualization.grand_prix_finale
+python examples/quick_race.py           # Quick race demo
+python examples/visual_race_demo.py     # Visual ASCII race
+python examples/custom_championship.py  # Championship demo
+python examples/telemetry_analysis.py   # Performance analysis
 ```
 
 #### Individual System Tests
