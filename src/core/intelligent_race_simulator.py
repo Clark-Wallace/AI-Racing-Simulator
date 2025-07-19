@@ -1,9 +1,9 @@
 from typing import List, Dict, Optional
-from racing_car import RacingCar
-from race_track import RaceTrack
-from race_simulator import RaceSimulator, RaceEvent
-from race_intelligence import RacingIntelligence, RaceSituation, RacePhase, TacticalDecision
-from data_prizes import DataPrizeSystem
+from .racing_car import RacingCar
+from .race_track import RaceTrack
+from .race_simulator import RaceSimulator, RaceEvent
+from ..intelligence.race_intelligence import RacingIntelligence, RaceSituation, RacePhase, TacticalDecision
+from ..intelligence.data_prizes import DataPrizeSystem
 import random
 
 

@@ -1,0 +1,4 @@
+# Optional graphics dependencies for AI Racing Simulator
+# Install with: pip install -r requirements-graphics.txt
+
+pygame>=2.5.0  # For 2D graphics and racing visualization

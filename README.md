@@ -1,6 +1,6 @@
 # AI Racing Simulator 🏎️
 
-A comprehensive AI racing simulator where 5 unique AI personalities compete in dynamic races with realistic physics, telemetry analysis, and strategic intelligence gathering.
+A comprehensive AI racing simulator featuring LLM-powered drivers and traditional AI personalities competing in dynamic races with realistic physics, Mario Kart-style power-ups, professional sprite graphics, and strategic intelligence gathering.
 
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -8,7 +8,39 @@ A comprehensive AI racing simulator where 5 unique AI personalities compete in d
 
 ## 🌟 Features
 
-### 🎭 AI Personalities
+### 🤖 LLM-Powered Racing (NEW!)
+- **5 LLM Drivers** powered by Together AI using Llama, Hermes, and Qwen models
+- **Natural Language Decision Making** - LLMs reason about racing strategies in real-time
+- **Adaptive AI Behavior** - Each LLM has unique personalities and racing styles
+- **Power-Up Strategy** - LLMs intelligently decide when to use Mario Kart-style items
+
+### 🎮 Mario Kart-Style Power-Ups
+- **11 Unique Power-Ups** including Turbo Boost, Red/Blue Shells, Lightning, Shield, and more
+- **Position-Based Distribution** - Trailing cars get better items for catch-up mechanics
+- **Visual Effects** - Professional sprite animations for nitro boosts and effects
+- **Collision System** - Realistic collision detection with speed penalties
+- **Precise Pickup System** - Ultra-small collection radius (0.2% of track) prevents monopolization
+
+### 🔫 Machine Gun Combat System (NEW!)
+- **50 Rounds Per Car** - Limited ammunition with no refills during the race
+- **Smart Targeting** - Automatically targets the car directly ahead within 300m range
+- **Strategic Combat** - Each hit reduces target speed by 15% for tactical overtaking
+- **Visual Effects** - Animated bullet trails, muzzle flashes, and impact effects
+- **Ammo Management** - Color-coded ammo display showing remaining rounds
+
+### 🎨 Professional Graphics
+- **Sprite-Based Cars** - 6 unique car designs with professional PNG sprites
+- **Animated Effects** - Nitro flames, smoke trails, and tire marks
+- **Dynamic Camera** - Smooth tracking of race action at 60 FPS
+- **Bigger Tracks** - 50% larger tracks with 120-pixel width for better racing
+
+### 🏁 Interactive Menu System
+- **Track Selection** - Choose from 5 tracks including Monaco, Silverstone, Nürburgring, Suzuka, and Rainbow Road
+- **Lap Count Options** - Sprint (3), Short (5), Standard (10), Long (20), Endurance (50), or Custom
+- **Weather Selection** - Clear, Rain, Storm, or Random conditions
+- **Driver Count** - Choose 3 drivers for quick races or 5 for full grid
+
+### 🎭 Traditional AI Personalities
 - **5 Unique Characters** with distinct driving styles, emotions, and backstories
 - **Dynamic Relationships** including rivalries and respect systems
 - **Emotional States** that affect performance and decision-making
@@ -16,9 +48,9 @@ A comprehensive AI racing simulator where 5 unique AI personalities compete in d
 
 ### 🏎️ Racing Physics
 - **Realistic Simulation** with fuel consumption, tire wear, and weather effects
-- **4 Track Types** - Speed, Technical, Mixed, and Endurance circuits
+- **Multiple Track Types** - Speed, Technical, Mixed, and Endurance circuits
 - **Dynamic Conditions** including weather changes and track evolution
-- **Strategic Elements** like pit stops, fuel management, and tire strategy
+- **Strategic Elements** like fuel management, tire strategy, and overtaking
 
 ### 📊 Advanced Analytics
 - **Comprehensive Telemetry** with 20+ performance metrics across 5 categories
@@ -40,12 +72,27 @@ A comprehensive AI racing simulator where 5 unique AI personalities compete in d
 git clone https://github.com/yourusername/ai-racing-simulator.git
 cd ai-racing-simulator
 
-# No additional dependencies needed - pure Python!
+# Install required dependencies
+pip install -r requirements.txt
+
+# For LLM racing, you'll need:
+# 1. The Nexus Connector (included as submodule)
+# 2. Together AI API key (set as TOGETHER_API_KEY environment variable)
 ```
 
 ### Running the Simulator
 
-#### Easy Demo Runner
+#### 🤖 LLM Racing with Menu (NEW!)
+```bash
+python run_llm_race_menu.py
+```
+This interactive menu lets you:
+- Select from 5 different tracks
+- Choose number of laps (3-50 or custom)
+- Set weather conditions
+- Pick 3 or 5 LLM drivers
+
+#### 🎮 Traditional AI Demo Runner
 ```bash
 python run_demo.py
 ```
@@ -54,7 +101,7 @@ This will show you a menu with options:
 1. Quick Race Example
 2. Custom Championship  
 3. Telemetry Analysis
-4. **Visual Race Demo (NEW!)** - See the cars race with ASCII graphics
+4. Visual Race Demo - ASCII visualization
 5. Complete System Showcase
 6. Grand Prix Finale
 7. Run All Tests
@@ -80,31 +127,60 @@ python tests/test_config.py      # Phase 7: Configuration
 
 ## 🎭 Meet the AI Racers
 
-### 🔥 Speed Demon - "Mad Max"
+### 🤖 LLM-Powered Drivers
+
+#### 🚀 Llama-3.2 Speed (Llama-3.2-3B-Instruct-Turbo)
+- **Car**: Red aggressive design with top speed focus
+- **Personality**: Fast and aggressive, takes risks for speed
+- **Strategy**: Attack-focused, uses power-ups offensively
+
+#### 🧠 Llama-70B Strategic (Meta-Llama-3.1-70B-Instruct-Turbo)
+- **Car**: Blue strategic design with balanced stats
+- **Personality**: Calculated and strategic, plans moves ahead
+- **Strategy**: Values long-term gains, conservative power-up usage
+
+#### ⚖️ Llama-8B Balanced (Meta-Llama-3.1-8B-Instruct-Turbo)
+- **Car**: Yellow balanced design
+- **Personality**: Adaptable racer, balances risk and reward
+- **Strategy**: Reads race conditions, flexible approach
+
+#### 🌀 Hermes Chaos (Meta-Llama-3.1-8B-Instruct-Turbo)
+- **Car**: Purple chaotic design
+- **Personality**: Unpredictable and creative
+- **Strategy**: Surprising moves, unconventional tactics
+
+#### 🔬 Qwen Technical (Qwen/Qwen2.5-72B-Instruct-Turbo)
+- **Car**: Green technical design with handling focus
+- **Personality**: Technical precision, optimal lines
+- **Strategy**: Efficiency-focused, smart power-up timing
+
+### 🏁 Traditional AI Personalities
+
+#### 🔥 Speed Demon - "Mad Max"
 - **Style**: Aggressive, risk-taking hothead
 - **Strengths**: Overtaking, high-speed sections
 - **Weaknesses**: Crash-prone, poor fuel efficiency
 - **Quote**: "Brakes are for quitters!"
 
-### 🔧 Tech Precision - "The Professor"
+#### 🔧 Tech Precision - "The Professor"
 - **Style**: Calculated, precise, analytical
 - **Strengths**: Cornering, consistency, technical tracks
 - **Weaknesses**: Struggles with unpredictable situations
 - **Quote**: "Precision is perfection."
 
-### 🌱 Fuel Master - "The Economist"
+#### 🌱 Fuel Master - "The Economist"
 - **Style**: Conservative, efficient, strategic
 - **Strengths**: Fuel efficiency, tire management, endurance
 - **Weaknesses**: Lacks outright speed
 - **Quote**: "Efficiency is the ultimate performance."
 
-### 🎯 Adaptive Racer - "The Chameleon"
+#### 🎯 Adaptive Racer - "The Chameleon"
 - **Style**: Mysterious, strategic, adaptable
 - **Strengths**: Adapts to any situation, strategic thinking
 - **Weaknesses**: Unpredictable performance
 - **Quote**: "Adaptation is evolution."
 
-### 🌪️ Chaos Cruiser - "The Tornado"
+#### 🌪️ Chaos Cruiser - "The Tornado"
 - **Style**: Unpredictable, entertaining, wild
 - **Strengths**: Thrives in chaotic conditions
 - **Weaknesses**: Inconsistent, unreliable
@@ -119,7 +195,16 @@ ai-racing-simulator/
 │   │   ├── racing_car.py        # Car physics and AI drivers
 │   │   ├── race_track.py        # Track modeling and weather
 │   │   ├── race_simulator.py    # Basic race simulation
-│   │   └── intelligent_race_simulator.py  # Enhanced simulation
+│   │   ├── intelligent_race_simulator.py  # Enhanced simulation
+│   │   ├── racing_powerups.py   # Mario Kart-style power-ups (NEW!)
+│   │   └── racing_collisions.py # Collision detection system (NEW!)
+│   ├── graphics/                # Pygame graphics
+│   │   ├── race_renderer.py     # 2D graphics engine with sprites
+│   │   ├── sprite_manager.py    # Sprite loading and management (NEW!)
+│   │   └── graphical_race_simulator.py # Visual race simulation
+│   ├── llm_drivers/             # LLM-powered racing (NEW!)
+│   │   ├── llm_racing_driver.py # LLM driver implementation
+│   │   └── llm_race_simulator.py # LLM race coordination
 │   ├── intelligence/            # AI personality and intelligence
 │   │   ├── ai_personalities.py  # Personality system
 │   │   ├── enhanced_ai_racers.py # Personality integration
@@ -134,10 +219,17 @@ ai-racing-simulator/
 │       ├── race_visualizer.py   # ASCII race graphics
 │       ├── showcase_finale.py   # System demonstration
 │       └── grand_prix_finale.py # Ultimate championship
+├── assets/                      # Game assets (NEW!)
+│   └── PNG/                     # Sprite graphics
+│       ├── Car_1_Main_Positions/ # Car sprites
+│       ├── Car_Effects/         # Visual effects
+│       └── ...                  # More car designs
 ├── tests/                       # Comprehensive test suite
+│   └── manual/                  # Manual test scripts
 ├── docs/                        # Documentation
 ├── examples/                    # Usage examples
-├── data/                        # Configuration and data files
+├── ai_config.py                 # LLM configuration (NEW!)
+├── run_llm_race_menu.py        # Interactive LLM racing menu (NEW!)
 └── README.md                    # This file
 ```
 
@@ -257,9 +349,17 @@ python tests/test_config.py        # Configuration system
 
 ## 🎯 Future Enhancements
 
+### In Progress 🚧
+- **2D Graphics Mode**: Basic Pygame visualization (v0.1 released!)
+  - ✅ Color-coded AI cars
+  - ✅ Dynamic track rendering
+  - ✅ Real-time position tracking
+  - 🔄 Camera controls and smooth animations
+  - 🔄 Enhanced visual effects
+
 ### Potential Additions
 - **Multiplayer Support**: Human vs AI racing
-- **Advanced Graphics**: 2D/3D visualization
+- **3D Graphics**: Full 3D racing visualization
 - **Machine Learning**: Adaptive AI improvement
 - **Online Leagues**: Multiplayer championships
 - **VR Integration**: Immersive racing experience

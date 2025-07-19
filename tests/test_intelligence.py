@@ -4,12 +4,12 @@ Test file for the Racing Intelligence System - Phase 5
 Demonstrates enhanced AI decision-making with competitor intelligence
 """
 
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack
-from race_simulator import RaceSimulator
-from intelligent_race_simulator import IntelligentRaceSimulator
-from data_prizes import DataPrizeSystem
-from challenge_generator import RaceChallengeGenerator, ChallengeType, ChallengeDifficulty
+from src.core.racing_car import RacingCar, DriverStyle
+from src.core.race_track import RaceTrack
+from src.core.race_simulator import RaceSimulator
+from src.core.intelligent_race_simulator import IntelligentRaceSimulator
+from src.intelligence.data_prizes import DataPrizeSystem
+from src.systems.challenge_generator import RaceChallengeGenerator, ChallengeType, ChallengeDifficulty
 
 
 def create_test_racers():

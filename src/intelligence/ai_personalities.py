@@ -4,7 +4,7 @@ from enum import Enum
 import random
 import math
 from datetime import datetime
-from racing_car import DriverStyle
+from ..core.racing_car import DriverStyle
 
 
 class EmotionalState(Enum):

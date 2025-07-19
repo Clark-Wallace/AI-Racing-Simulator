@@ -3,9 +3,9 @@ from typing import Dict, List, Optional, Tuple, Set
 from enum import Enum
 import math
 import random
-from racing_car import RacingCar, DriverStyle
-from race_track import TrackSegment, TrackType
-from data_prizes import DataPrizeSystem, CompetitorIntelligence
+from ..core.racing_car import RacingCar, DriverStyle
+from ..core.race_track import TrackSegment, TrackType
+from .data_prizes import DataPrizeSystem, CompetitorIntelligence
 
 
 class TacticalDecision(Enum):

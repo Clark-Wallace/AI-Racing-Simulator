@@ -4,8 +4,8 @@ Test file for the Challenge Generator System - Phase 3
 Demonstrates different racing challenge types
 """
 
-from racing_car import RacingCar, DriverStyle
-from challenge_generator import RaceChallengeGenerator, ChallengeType, ChallengeDifficulty
+from src.core.racing_car import RacingCar, DriverStyle
+from src.systems.challenge_generator import RaceChallengeGenerator, ChallengeType, ChallengeDifficulty
 import random
 
 

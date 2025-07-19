@@ -2,9 +2,9 @@ from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 import random
 import math
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack, TrackSegment
-from telemetry import TelemetrySystem, TelemetrySnapshot
+from .racing_car import RacingCar, DriverStyle
+from .race_track import RaceTrack, TrackSegment
+from ..systems.telemetry import TelemetrySystem, TelemetrySnapshot
 
 
 @dataclass

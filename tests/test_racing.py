@@ -4,9 +4,9 @@ Test file for the AI Racing Simulator
 Demonstrates all core functionality from Phase 1
 """
 
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack, TrackType
-from race_simulator import RaceSimulator
+from src.core.racing_car import RacingCar, DriverStyle
+from src.core.race_track import RaceTrack, TrackType
+from src.core.race_simulator import RaceSimulator
 
 
 def create_ai_racers():

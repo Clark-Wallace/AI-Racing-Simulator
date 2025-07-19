@@ -137,6 +137,193 @@ class RacingCar:
         wear = base_wear * cornering_stress * style_mod["risk_factor"]
         self.tire_wear = min(100, self.tire_wear + wear)
     
+    def calculate_corner_speed(self, corner_difficulty: float = 50) -> float:
+        """Calculate safe cornering speed based on car handling and corner difficulty"""
+        # Base cornering speed as percentage of top speed
+        base_corner_ratio = 0.6 + (self.get_effective_handling() * 0.3)
+        
+        # Adjust for corner difficulty (0-100 scale)
+        difficulty_factor = 1.0 - (corner_difficulty / 200)  # Max 50% reduction
+        
+        # Apply tire wear penalty
+        tire_penalty = 1.0 - (self.tire_wear / 200)  # Max 50% reduction when worn
+        
+        # Calculate final corner speed
+        corner_speed = self.get_effective_top_speed() * base_corner_ratio * difficulty_factor * tire_penalty
+        
+        return max(corner_speed, self.get_effective_top_speed() * 0.3)  # Minimum 30% of top speed
+    
+    def calculate_pit_stop_value(self, laps_remaining: int, current_position: int) -> dict:
+        """Calculate strategic value of pitting now vs later"""
+        # Time cost of pit stop
+        pit_time_cost = 25.0  # seconds
+        
+        # Fuel gain if we pit
+        fuel_gain = 100 - self.fuel_level
+        
+        # Tire performance gain
+        tire_gain = self.tire_wear  # Reset to 0
+        
+        # Calculate laps we can do with current fuel
+        fuel_per_lap = 100 / 15  # Rough estimate
+        laps_possible = self.fuel_level / fuel_per_lap
+        
+        # Strategic assessment
+        must_pit = laps_possible < laps_remaining
+        tire_critical = self.tire_wear > 80
+        
+        return {
+            "recommended": must_pit or tire_critical or (tire_gain > 40 and laps_remaining > 3),
+            "urgency": "critical" if must_pit else ("high" if tire_critical else "medium"),
+            "fuel_gain": fuel_gain,
+            "tire_gain": tire_gain,
+            "time_cost": pit_time_cost,
+            "laps_possible": laps_possible
+        }
+    
+    def analyze_overtaking_opportunity(self, gap_to_ahead: float, relative_speed: float, 
+                                      track_section: str = "straight") -> dict:
+        """Analyze probability and risk of overtaking maneuver"""
+        # Base overtaking factors
+        speed_advantage = max(0, relative_speed)  # Only positive relative speed helps
+        
+        # Track section multipliers
+        section_factors = {
+            "straight": {"opportunity": 1.0, "risk": 0.3},
+            "corner": {"opportunity": 0.6, "risk": 0.8},
+            "chicane": {"opportunity": 0.4, "risk": 1.2},
+            "long_corner": {"opportunity": 0.7, "risk": 0.6}
+        }
+        
+        section = section_factors.get(track_section, section_factors["straight"])
+        
+        # Calculate success probability
+        if gap_to_ahead > 100:  # Large gap
+            success_prob = 0.1
+        elif gap_to_ahead > 50:  # Medium gap
+            success_prob = 0.3 + (speed_advantage / 20) * section["opportunity"]
+        elif gap_to_ahead > 20:  # Close gap
+            success_prob = 0.6 + (speed_advantage / 15) * section["opportunity"]
+        else:  # Very close
+            success_prob = 0.8 + (speed_advantage / 10) * section["opportunity"]
+        
+        # Calculate risk level
+        risk_level = section["risk"] * (1 + self.get_style_modifiers()["risk_factor"])
+        
+        return {
+            "success_probability": min(0.95, success_prob),
+            "risk_level": risk_level,
+            "recommended": success_prob > 0.6 and risk_level < 1.0,
+            "track_section": track_section,
+            "speed_advantage": speed_advantage,
+            "gap": gap_to_ahead
+        }
+    
+    def predict_tire_degradation(self, laps_remaining: int, aggressive_factor: float = 1.0) -> dict:
+        """Predict tire wear over remaining laps"""
+        current_wear = self.tire_wear
+        wear_per_lap = 5.0 * aggressive_factor * self.get_style_modifiers()["risk_factor"]
+        
+        predicted_wear = current_wear + (wear_per_lap * laps_remaining)
+        
+        # Degradation thresholds
+        if predicted_wear > 90:
+            degradation_level = "critical"
+        elif predicted_wear > 70:
+            degradation_level = "high"
+        elif predicted_wear > 50:
+            degradation_level = "medium"
+        else:
+            degradation_level = "low"
+        
+        return {
+            "current_wear": current_wear,
+            "predicted_final_wear": min(100, predicted_wear),
+            "wear_per_lap": wear_per_lap,
+            "degradation_level": degradation_level,
+            "performance_loss": min(30, predicted_wear / 3),  # Max 30% performance loss
+            "critical_lap": max(1, (90 - current_wear) / wear_per_lap) if wear_per_lap > 0 else laps_remaining + 1
+        }
+    
+    def calculate_fuel_strategy(self, laps_remaining: int, current_position: int) -> dict:
+        """Calculate optimal fuel management strategy"""
+        # Fuel consumption rates by driving style
+        style_mod = self.get_style_modifiers()
+        base_consumption = 100 / 15  # Base: 15 laps per tank
+        actual_consumption = base_consumption / style_mod["fuel_penalty"]
+        
+        # Calculate fuel scenarios
+        fuel_needed = actual_consumption * laps_remaining
+        fuel_deficit = max(0, fuel_needed - self.fuel_level)
+        laps_possible = self.fuel_level / actual_consumption
+        
+        # Strategy recommendations
+        if fuel_deficit > 0:
+            strategy = "must_pit"
+        elif laps_possible < laps_remaining + 2:  # Close to limit
+            strategy = "conserve"
+        elif self.fuel_level > 80:
+            strategy = "attack"
+        else:
+            strategy = "manage"
+        
+        return {
+            "current_fuel": self.fuel_level,
+            "fuel_needed": fuel_needed,
+            "fuel_deficit": fuel_deficit,
+            "laps_possible": laps_possible,
+            "consumption_rate": actual_consumption,
+            "strategy": strategy,
+            "can_finish": fuel_deficit == 0
+        }
+    
+    def assess_weather_impact(self, weather: str, track_section: str = "mixed") -> dict:
+        """Assess how weather affects car performance"""
+        weather_effects = {
+            "clear": {"speed": 1.0, "handling": 1.0, "tire_wear": 1.0, "risk": 1.0},
+            "rain": {"speed": 0.85, "handling": 0.7, "tire_wear": 0.8, "risk": 1.5},
+            "heavy_rain": {"speed": 0.7, "handling": 0.5, "tire_wear": 0.6, "risk": 2.0},
+            "fog": {"speed": 0.9, "handling": 0.9, "tire_wear": 1.0, "risk": 1.3},
+            "wind": {"speed": 0.95, "handling": 0.85, "tire_wear": 1.1, "risk": 1.1}
+        }
+        
+        effects = weather_effects.get(weather, weather_effects["clear"])
+        
+        # Car-specific adaptation
+        handling_advantage = self.get_effective_handling()
+        adaptation_bonus = 1.0 + (handling_advantage - 0.5) * 0.2  # Better handling = better weather adaptation
+        
+        return {
+            "weather": weather,
+            "speed_factor": effects["speed"] * adaptation_bonus,
+            "handling_factor": effects["handling"] * adaptation_bonus,
+            "tire_wear_factor": effects["tire_wear"],
+            "risk_factor": effects["risk"] / adaptation_bonus,
+            "adaptation_level": "high" if adaptation_bonus > 1.1 else ("medium" if adaptation_bonus > 1.0 else "low")
+        }
+    
+    def get_performance_envelope(self) -> dict:
+        """Get comprehensive performance metrics for strategic analysis"""
+        return {
+            "speed_metrics": {
+                "top_speed": self.get_effective_top_speed(),
+                "acceleration": self.get_effective_acceleration(),
+                "corner_speed_50": self.calculate_corner_speed(50),
+                "corner_speed_90": self.calculate_corner_speed(90)
+            },
+            "efficiency_metrics": {
+                "fuel_efficiency": self.fuel_efficiency,
+                "current_fuel": self.fuel_level,
+                "tire_condition": 100 - self.tire_wear
+            },
+            "strategic_metrics": {
+                "handling": self.get_effective_handling(),
+                "driver_style": self.driver_style.value,
+                "risk_tolerance": self.get_style_modifiers()["risk_factor"],
+                "current_position": self.current_position
+            }
+        }
+    
     def reset_for_race(self):
         """Reset dynamic attributes for a new race"""
         self.current_speed = 0.0

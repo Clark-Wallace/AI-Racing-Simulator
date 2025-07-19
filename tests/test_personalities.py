@@ -4,12 +4,12 @@ Test file for the Enhanced AI Personalities System - Phase 6
 Demonstrates personality traits, emotions, and relationships
 """
 
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack
-from intelligent_race_simulator import IntelligentRaceSimulator
-from ai_personalities import AIPersonalitySystem, EmotionalState, PersonalityTrait
-from enhanced_ai_racers import create_enhanced_ai_racers, EnhancedAIRacer
-from data_prizes import DataPrizeSystem
+from src.core.racing_car import RacingCar, DriverStyle
+from src.core.race_track import RaceTrack
+from src.core.intelligent_race_simulator import IntelligentRaceSimulator
+from src.intelligence.ai_personalities import AIPersonalitySystem, EmotionalState, PersonalityTrait
+from src.intelligence.enhanced_ai_racers import create_enhanced_ai_racers, EnhancedAIRacer
+from src.intelligence.data_prizes import DataPrizeSystem
 import random
 
 

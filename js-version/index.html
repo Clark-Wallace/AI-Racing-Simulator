@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Racing Simulator - JavaScript Edition</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+        }
+        
+        #gameCanvas {
+            border: 2px solid #0ff;
+            background: #1a1a1a;
+        }
+        
+        #menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #0ff;
+            text-align: center;
+            min-width: 400px;
+        }
+        
+        #menu h1 {
+            color: #0ff;
+            margin: 0 0 20px 0;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #0ff;
+        }
+        
+        .menu-section {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .menu-section h3 {
+            color: #ff0;
+            margin: 10px 0;
+        }
+        
+        button {
+            background: #0ff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #fff;
+            box-shadow: 0 0 10px #0ff;
+        }
+        
+        button.selected {
+            background: #ff0;
+        }
+        
+        #startButton {
+            background: #0f0;
+            color: #000;
+            font-size: 20px;
+            padding: 15px 40px;
+            margin-top: 20px;
+        }
+        
+        #startButton:hover {
+            background: #0ff;
+            box-shadow: 0 0 20px #0f0;
+        }
+        
+        #hud {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #0ff;
+            font-size: 14px;
+            min-width: 200px;
+        }
+        
+        #powerups {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ff0;
+            font-size: 14px;
+            min-width: 200px;
+        }
+        
+        #ammo {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #f00;
+            font-size: 14px;
+            min-width: 200px;
+        }
+        
+        .car-status {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ammo-bar {
+            width: 120px;
+            height: 10px;
+            background: #333;
+            border: 1px solid #666;
+            position: relative;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .ammo-fill {
+            height: 100%;
+            background: #0f0;
+            transition: width 0.3s;
+        }
+        
+        .ammo-fill.low {
+            background: #ff0;
+        }
+        
+        .ammo-fill.critical {
+            background: #f00;
+        }
+        
+        #controls {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #0ff;
+            font-size: 12px;
+        }
+        
+        .emoji {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="1200" height="800"></canvas>
+        
+        <!-- Menu -->
+        <div id="menu">
+            <h1>🏎️ AI Racing Simulator</h1>
+            <p>JavaScript Edition with Machine Guns!</p>
+            
+            <div class="menu-section">
+                <h3>Select Track:</h3>
+                <button class="track-btn selected" data-track="speedway">🏁 Big Oval Speedway</button>
+                <button class="track-btn" data-track="monaco">Monaco</button>
+                <button class="track-btn" data-track="silverstone">Silverstone</button>
+                <button class="track-btn" data-track="nurburgring">Nürburgring</button>
+                <button class="track-btn" data-track="suzuka">Suzuka</button>
+                <button class="track-btn" data-track="rainbow">Rainbow Road</button>
+            </div>
+            
+            <div class="menu-section">
+                <h3>Number of Laps:</h3>
+                <button class="laps-btn" data-laps="3">Sprint (3)</button>
+                <button class="laps-btn selected" data-laps="5">Short (5)</button>
+                <button class="laps-btn" data-laps="10">Standard (10)</button>
+            </div>
+            
+            <div class="menu-section">
+                <h3>Weather:</h3>
+                <button class="weather-btn selected" data-weather="clear">Clear</button>
+                <button class="weather-btn" data-weather="rain">Rain</button>
+                <button class="weather-btn" data-weather="storm">Storm</button>
+            </div>
+            
+            <button id="startButton">🏁 START RACE</button>
+        </div>
+        
+        <!-- HUD Elements (hidden initially) -->
+        <div id="hud" style="display: none;">
+            <h3 style="color: #0ff; margin: 0 0 10px 0;">Race Status</h3>
+            <div id="lapCounter">Lap 1/5</div>
+            <div id="positions"></div>
+        </div>
+        
+        <div id="powerups" style="display: none;">
+            <h3 style="color: #ff0; margin: 0 0 10px 0;">Power-Ups</h3>
+            <div id="powerupList"></div>
+        </div>
+        
+        <div id="ammo" style="display: none;">
+            <h3 style="color: #f00; margin: 0 0 10px 0;">Machine Guns</h3>
+            <div id="ammoList"></div>
+        </div>
+        
+        <div id="controls" style="display: none;">
+            <b>Controls:</b><br>
+            ESC - Exit to menu<br>
+            Space - Fire (if controlling a car)
+        </div>
+    </div>
+    
+    <!-- Load game scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/car.js"></script>
+    <script src="js/track.js"></script>
+    <script src="js/powerups.js"></script>
+    <script src="js/weapons.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

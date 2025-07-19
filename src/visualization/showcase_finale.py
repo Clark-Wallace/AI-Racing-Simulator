@@ -9,16 +9,16 @@ import random
 from typing import Dict, List
 
 # Import all systems
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack, TrackType
-from race_config import ConfigurationManager, DifficultyLevel, RaceMode
-from championship import ChampionshipManager
-from ai_personalities import AIPersonalitySystem
-from enhanced_ai_racers import create_enhanced_ai_racers
-from data_prizes import DataPrizeSystem
-from challenge_generator import RaceChallengeGenerator, ChallengeType
-from race_visualizer import RaceVisualizer, RacePosition
-from intelligent_race_simulator import IntelligentRaceSimulator
+from ..core.racing_car import RacingCar, DriverStyle
+from ..core.race_track import RaceTrack, TrackType
+from ..systems.race_config import ConfigurationManager, DifficultyLevel, RaceMode
+from ..systems.championship import ChampionshipManager
+from ..intelligence.ai_personalities import AIPersonalitySystem
+from ..intelligence.enhanced_ai_racers import create_enhanced_ai_racers
+from ..intelligence.data_prizes import DataPrizeSystem
+from ..systems.challenge_generator import RaceChallengeGenerator, ChallengeType
+from .race_visualizer import RaceVisualizer, RacePosition
+from ..core.intelligent_race_simulator import IntelligentRaceSimulator
 
 
 class ShowcaseFinale:

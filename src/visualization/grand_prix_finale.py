@@ -10,17 +10,17 @@ from datetime import datetime
 from typing import Dict, List, Optional
 
 # Import all our systems
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack, TrackType
-from race_config import (
+from ..core.racing_car import RacingCar, DriverStyle
+from ..core.race_track import RaceTrack, TrackType
+from ..systems.race_config import (
     ConfigurationManager, ChampionshipSettings, RaceSettings,
     DifficultyLevel, AISettings
 )
-from championship import ChampionshipManager
-from ai_personalities import AIPersonalitySystem, EmotionalState
-from enhanced_ai_racers import create_enhanced_ai_racers
-from data_prizes import DataPrizeSystem
-from challenge_generator import RaceChallengeGenerator, ChallengeType
+from ..systems.championship import ChampionshipManager
+from ..intelligence.ai_personalities import AIPersonalitySystem, EmotionalState
+from ..intelligence.enhanced_ai_racers import create_enhanced_ai_racers
+from ..intelligence.data_prizes import DataPrizeSystem
+from ..systems.challenge_generator import RaceChallengeGenerator, ChallengeType
 import json
 
 

@@ -2,11 +2,11 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 import json
-from race_config import ChampionshipSettings, RaceSettings
-from challenge_generator import RaceChallengeGenerator, ChallengeType
-from intelligent_race_simulator import IntelligentRaceSimulator
-from data_prizes import DataPrizeSystem
-from ai_personalities import AIPersonalitySystem
+from .race_config import ChampionshipSettings, RaceSettings
+from .challenge_generator import RaceChallengeGenerator, ChallengeType
+from ..core.intelligent_race_simulator import IntelligentRaceSimulator
+from ..intelligence.data_prizes import DataPrizeSystem
+from ..intelligence.ai_personalities import AIPersonalitySystem
 
 
 @dataclass

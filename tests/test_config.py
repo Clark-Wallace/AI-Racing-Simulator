@@ -4,15 +4,15 @@ Test file for the Configuration and Championship System - Phase 7
 Demonstrates race configuration, presets, and championship management
 """
 
-from race_config import (
+from src.systems.race_config import (
     DifficultyLevel, RaceMode, AISettings, RaceSettings, 
     ChampionshipSettings, SimulatorConfig, ConfigurationManager
 )
-from championship import ChampionshipManager, DriverStanding
-from racing_car import RacingCar, DriverStyle
-from race_track import TrackType
-from ai_personalities import AIPersonalitySystem
-from enhanced_ai_racers import create_enhanced_ai_racers
+from src.systems.championship import ChampionshipManager, DriverStanding
+from src.core.racing_car import RacingCar, DriverStyle
+from src.core.race_track import TrackType
+from src.intelligence.ai_personalities import AIPersonalitySystem
+from src.intelligence.enhanced_ai_racers import create_enhanced_ai_racers
 import os
 import json
 

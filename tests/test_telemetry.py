@@ -4,9 +4,9 @@ Test file for the Telemetry System - Phase 2
 Demonstrates performance metrics collection and analysis
 """
 
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack
-from race_simulator import RaceSimulator
+from src.core.racing_car import RacingCar, DriverStyle
+from src.core.race_track import RaceTrack
+from src.core.race_simulator import RaceSimulator
 import json
 
 

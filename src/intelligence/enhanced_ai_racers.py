@@ -1,7 +1,7 @@
 from typing import List, Dict, Optional
-from racing_car import RacingCar, DriverStyle
-from ai_personalities import AIPersonalitySystem, PersonalityProfile, EmotionalState
-from race_intelligence import RacingIntelligence, TacticalDecision, RaceSituation
+from ..core.racing_car import RacingCar, DriverStyle
+from .ai_personalities import AIPersonalitySystem, PersonalityProfile, EmotionalState
+from .race_intelligence import RacingIntelligence, TacticalDecision, RaceSituation
 import random
 
 

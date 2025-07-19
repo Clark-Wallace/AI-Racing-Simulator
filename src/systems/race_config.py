@@ -4,9 +4,9 @@ from enum import Enum
 import json
 import os
 from datetime import datetime
-from racing_car import DriverStyle
-from race_track import TrackType
-from challenge_generator import ChallengeType, ChallengeDifficulty
+from ..core.racing_car import DriverStyle
+from ..core.race_track import TrackType
+from .challenge_generator import ChallengeType, ChallengeDifficulty
 
 
 class DifficultyLevel(Enum):

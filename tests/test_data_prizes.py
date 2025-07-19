@@ -4,11 +4,11 @@ Test file for the Data Prize Distribution System - Phase 4
 Demonstrates telemetry data access rights and competitor intelligence
 """
 
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack
-from race_simulator import RaceSimulator
-from data_prizes import DataPrizeSystem, AccessLevel
-from challenge_generator import RaceChallengeGenerator, ChallengeType, ChallengeDifficulty
+from src.core.racing_car import RacingCar, DriverStyle
+from src.core.race_track import RaceTrack
+from src.core.race_simulator import RaceSimulator
+from src.intelligence.data_prizes import DataPrizeSystem, AccessLevel
+from src.systems.challenge_generator import RaceChallengeGenerator, ChallengeType, ChallengeDifficulty
 import json
 
 

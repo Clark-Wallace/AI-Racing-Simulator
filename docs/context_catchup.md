@@ -7,185 +7,143 @@ This document provides a quick overview of the current state of the AI Racing Si
 ---
 
 ## Project Goal
-Build a complete AI car racing simulator where 5 different AI agents compete with distinct racing personalities, collecting performance data as prizes.
+Build a complete AI car racing simulator with both traditional rule-based AI and LLM-powered drivers, featuring Mario Kart-style power-ups and professional graphics.
 
-## Current Status: ALL PHASES COMPLETE ✅✅✅
+## Current Status: LLM INTEGRATION COMPLETE ✅✅✅
 
-### What's Been Built:
+### Major Features Added (Phase 9 - LLM Integration):
 
-1. **racing_car.py** - Complete ✅
-   - RacingCar class with full physics simulation
-   - 5 driver styles with unique performance modifiers
-   - Dynamic attributes (speed, fuel, tire wear)
-   - Methods: accelerate(), consume_fuel(), wear_tires()
+1. **LLM Racing Drivers** ✅
+   - 5 LLM-powered drivers using Together AI
+   - Natural language decision making
+   - Expanded action vocabulary
+   - Real-time strategic reasoning
 
-2. **race_track.py** - Complete ✅
-   - RaceTrack class with 4 track types
-   - TrackSegment system for detailed track modeling
-   - Factory methods for creating preset tracks
-   - Weather system affecting performance
+2. **Mario Kart Power-Ups** ✅
+   - 11 unique power-up types
+   - Position-based distribution
+   - Visual effects and animations
+   - Strategic usage by LLMs
 
-3. **race_simulator.py** - Complete ✅
-   - Full race simulation with real-time physics
-   - Position tracking and overtaking
-   - Event system (crashes, fuel warnings)
-   - Integrated telemetry collection
+3. **Professional Graphics** ✅
+   - 6 car sprite designs
+   - Animated nitro effects
+   - 60 FPS smooth rendering
+   - Bigger tracks (50% larger)
 
-4. **telemetry.py** - Complete ✅
-   - Comprehensive performance metrics (5 categories, 20+ metrics)
-   - Real-time data collection during races
-   - Analysis and comparison tools
-   - Export functionality for data prize system
+4. **Interactive Menu System** ✅
+   - 5 track selections
+   - Customizable lap counts
+   - Weather conditions
+   - Driver count options
 
-5. **test_racing.py** - Complete ✅
-   - Demonstrates all Phase 1 functionality
+5. **Collision Detection** ✅
+   - 4 collision types
+   - Speed penalties
+   - Protection mechanics
+   - Cooldown system
 
-6. **test_telemetry.py** - Complete ✅
-   - Demonstrates Phase 2 telemetry system
+### Previously Completed (Phases 1-8):
 
-7. **challenge_generator.py** - Complete ✅
-   - 12 different challenge types
-   - 4 difficulty levels
-   - Custom scoring and success criteria
-   - Special rules per challenge
+1. **racing_car.py** - Car physics and 5 driver styles
+2. **race_track.py** - 4 track types with segments
+3. **race_simulator.py** - Core simulation engine
+4. **telemetry.py** - 20+ performance metrics
+5. **challenge_generator.py** - 12 challenge types
+6. **data_prizes.py** - Intelligence gathering
+7. **race_intelligence.py** - Strategic AI
+8. **ai_personalities.py** - Emotional AI system
+9. **race_config.py** - Configuration management
+10. **championship.py** - Season management
 
-8. **test_challenges.py** - Complete ✅
-   - Demonstrates all challenge types
+### New Files Added:
 
-9. **data_prizes.py** - Complete ✅
-   - Position-based data access rights
-   - Competitor intelligence analysis
-   - Spy network visualization
+1. **ai_config.py** - LLM prompts and configuration
+2. **llm_racing_driver.py** - LLM driver implementation
+3. **llm_race_simulator.py** - LLM race coordination
+4. **racing_powerups.py** - Power-up system
+5. **racing_collisions.py** - Collision detection
+6. **sprite_manager.py** - Sprite management
+7. **run_llm_race_menu.py** - Interactive menu
 
-10. **test_data_prizes.py** - Complete ✅
-    - Demonstrates prize distribution
+### How to Run:
 
-11. **race_intelligence.py** - Complete ✅
-    - Strategic planning and tactical decisions
-    - Learning from race experiences
-    - Psychological tactics
+#### LLM Racing (NEW):
+```bash
+# Set Together AI API key
+export TOGETHER_API_KEY="your-key-here"
 
-12. **intelligent_race_simulator.py** - Complete ✅
-    - Enhanced simulator with AI intelligence
-    - Integrates all previous systems
+# Run interactive menu
+python run_llm_race_menu.py
+```
 
-13. **test_intelligence.py** - Complete ✅
-    - Demonstrates intelligent racing
+#### Traditional AI Racing:
+```bash
+# Run demo menu
+python run_demo.py
 
-14. **ai_personalities.py** - Complete ✅
-    - Rich personality profiles with backstories
-    - 9 emotional states affecting performance
-    - Relationship and rivalry system
-    - Long-term evolution
+# Run specific examples
+python examples/quick_race.py
+python examples/visual_race_demo.py
+```
 
-15. **enhanced_ai_racers.py** - Complete ✅
-    - Personality integration with racing
-    - Internal thoughts and radio messages
+### Key Technical Solutions:
 
-16. **test_personalities.py** - Complete ✅
-    - Demonstrates personality system
+1. **Async LLM Integration**
+   - ThreadPoolExecutor for non-blocking AI calls
+   - Decisions every 0.5 seconds at 60 FPS
 
-17. **race_config.py** - Complete ✅
-    - Configuration management system
-    - Difficulty levels and AI settings
-    - Race and championship settings
-    - Save/load functionality
+2. **Sprite System**
+   - Lazy loading after pygame init
+   - Rotation and scaling support
+   - Multiple animation frames
 
-18. **championship.py** - Complete ✅
-    - Full season management
-    - Driver and team standings
-    - Points system and race records
-    - Championship statistics
+3. **Power-Up Strategy**
+   - LLMs analyze race position
+   - Intelligent item usage
+   - Visual feedback system
 
-19. **test_config.py** - Complete ✅
-    - Demonstrates configuration system
-    - Championship management examples
+4. **Collision Physics**
+   - Proximity-based detection
+   - Speed reduction penalties
+   - Protection mechanics
 
-20. **race_visualizer.py** - Complete ✅
-    - ASCII race visualization
-    - Track maps and standings
-    - Telemetry displays
+### Current Issues:
+- Verbose power-up messages
+- Occasional LLM timeouts
+- No save/load for races
 
-21. **showcase_finale.py** - Complete ✅
-    - Complete system demonstration
-    - All phases working together
-    - Interactive feature walkthrough
+### Next Possible Features:
+- Online multiplayer
+- Track editor
+- Replay system
+- Custom LLM personalities
+- Advanced telemetry
 
-22. **grand_prix_finale.py** - Complete ✅
-    - Ultimate championship experience
-    - 5-race season with drama
-    - Complete AI narrative system
-
-23. **README.md** - Complete ✅
-    - Comprehensive documentation
-    - Usage examples and API
-    - Complete feature overview
-
-### What's Next:
-
-🏆 PROJECT COMPLETE! 🏆
-
-All 8 phases successfully implemented:
-- Complete racing simulation ecosystem
-- 5 unique AI personalities with emotions
-- Full championship management
-- Zero external dependencies
-- Comprehensive documentation
-- Ready for production use!
-
-### Key Design Decisions:
-
-- **Modular Architecture**: Each component in separate files
-- **Physics-Based**: Realistic calculations for speed, cornering, fuel
-- **Style System**: Each driver style affects multiple performance aspects
-- **No External Dependencies**: Using only Python standard library
-
-### Important Files:
-
-- `claude_code_prompts.md`: Original project specification (8 phases)
-- `racing_car.py`: Car implementation
-- `race_track.py`: Track implementation
-- `developers_log.md`: Detailed development history
-
-### How to Use:
-
-1. Run `python3 showcase_finale.py` for complete demo
-2. Run `python3 grand_prix_finale.py` for ultimate championship
-3. Run individual test files for specific features
-4. Create custom configurations and championships
-5. Enjoy the AI racing experience!
-
-### Code Style Guidelines:
-
-- Use type hints everywhere
-- Dataclasses for data structures
-- Enums for fixed choices
-- Comprehensive docstrings
-- Validation in __post_init__
-- Factory methods for complex object creation
-
-### Physics Constants Being Used:
-
-- Gravity: 9.81 m/s²
-- Cornering: v = sqrt(μ * g * r)
-- Fuel tank: 60L standard
-- Tire wear: 0.1% per km base rate
-- Braking: 1.5x more effective than acceleration
+### Important Constants:
+- 60 FPS target
+- 25% car sprite scale
+- 120px track width
+- 0.5s LLM decision interval
+- 11 power-up types
 
 ---
 
-## Quick Start Commands
+## Quick Test Commands
 
-To test current implementation:
 ```python
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack
+# Test sprites
+python tests/manual/test_sprites.py
 
-# Create a car
-car = RacingCar("Speed Demon", 380, 3.2, 0.7, 12, DriverStyle.AGGRESSIVE)
+# Test LLM race
+python tests/manual/test_llm_visual_race.py
 
-# Create a track
-track = RaceTrack.create_speed_track()
-
-# Next: Need race_simulator.py to actually race!
+# Full interactive experience
+python run_llm_race_menu.py
 ```
+
+## Dependencies:
+- pygame (for graphics)
+- Together AI API key
+- Nexus Connector (included)
+- Python 3.7+

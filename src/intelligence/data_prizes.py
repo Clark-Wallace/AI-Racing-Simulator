@@ -3,7 +3,7 @@ from typing import Dict, List, Set, Optional, Tuple
 from enum import Enum
 import json
 from datetime import datetime
-from telemetry import PerformanceMetrics, TelemetrySystem
+from ..systems.telemetry import PerformanceMetrics, TelemetrySystem
 
 
 class AccessLevel(Enum):

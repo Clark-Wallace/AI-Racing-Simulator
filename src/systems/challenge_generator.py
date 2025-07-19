@@ -2,9 +2,9 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple, Callable
 from enum import Enum
 import random
-from racing_car import RacingCar, DriverStyle
-from race_track import RaceTrack, TrackType, TrackSegment
-from race_simulator import RaceSimulator
+from ..core.racing_car import RacingCar, DriverStyle
+from ..core.race_track import RaceTrack, TrackType, TrackSegment
+from ..core.race_simulator import RaceSimulator
 
 
 class ChallengeType(Enum):

@@ -4,19 +4,25 @@
 
 You are working on an AI car racing simulator where 5 AI agents compete as racing cars. The project follows an 8-phase development plan outlined in `claude_code_prompts.md`.
 
-## Current Phase: Phase 1 - Core Racing Engine
+## Current Phase: LLM Enhancement & Combat Systems
 
 ### Completed Components:
-- ✅ `racing_car.py`: Car physics and driver styles
-- ✅ `race_track.py`: Track types and segment system
-- 🔄 Need to complete: Race simulation logic and testing
+- ✅ Core racing engine with physics simulation
+- ✅ LLM-powered drivers using Together AI
+- ✅ Mario Kart-style power-up system (11 items)
+- ✅ Collision detection with 4 collision types
+- ✅ Machine gun combat system (50 rounds/car)
+- ✅ Professional sprite graphics at 60 FPS
+- ✅ Interactive menu system
+- ✅ Precision pickup system (0.2% radius)
 
 ## Key Project Files:
-- `claude_code_prompts.md` - Full project specification
-- `developers_log.md` - Detailed development history
-- `context_catchup.md` - Quick summary for new AI sessions
-- `racing_car.py` - Car implementation
-- `race_track.py` - Track implementation
+- `run_llm_race_menu.py` - Main entry point with interactive menu
+- `src/llm_drivers/` - LLM-powered AI drivers
+- `src/core/racing_powerups.py` - Power-up system
+- `src/core/racing_weapons.py` - Machine gun combat
+- `src/graphics/race_renderer.py` - Visual rendering engine
+- `ai_config.py` - Together AI configuration
 
 ## Development Guidelines:
 
@@ -26,33 +32,40 @@ You are working on an AI car racing simulator where 5 AI agents compete as racin
 - Comprehensive docstrings
 - Physics-based calculations
 
-### Testing Commands:
+### Running the Simulator:
 ```bash
-# Run tests (once created)
-python test_racing.py
+# Start interactive race menu
+python3 run_llm_race_menu.py
+
+# Test machine gun system
+python3 test_machine_guns.py
 
 # Quick validation
-python -m py_compile racing_car.py race_track.py
+python3 -m py_compile src/core/*.py src/llm_drivers/*.py
 ```
 
-## Next Tasks:
-1. Complete race simulation logic
-2. Implement lap timing and position tracking
-3. Add overtaking mechanics
-4. Create comprehensive tests
-5. Move to Phase 2: Performance Metrics
+## Recent Enhancements:
+1. ✅ Fixed position tracking with lap counting
+2. ✅ Reduced power-up pickup radius to 0.002
+3. ✅ Made pickup boxes smaller (10x10 pixels)
+4. ✅ Added machine gun system with 50 rounds
+5. ✅ Implemented bullet visual effects
+6. ✅ Added ammo counter display
+7. ✅ Updated AI prompts to encourage weapon use
 
 ## Important Design Decisions:
-- Modular architecture (separate files per component)
-- Realistic physics with simplified calculations
-- 5 distinct driver personalities affecting performance
-- Data prize system (winners get loser telemetry)
+- LLM drivers make natural language decisions
+- Power-ups use position-based distribution
+- Machine guns have limited ammo (no refills)
+- Ultra-precise pickup system prevents monopolization
+- Collision detection affects speed realistically
 
-## Physics Constants:
-- Standard fuel tank: 60L
-- Gravity: 9.81 m/s²
-- Base tire wear: 0.1% per km
-- Braking efficiency: 1.5x acceleration
+## Key Systems:
+- **Power-ups**: 11 types, 0.2% pickup radius
+- **Machine guns**: 50 rounds, 300m range, 15% damage
+- **Collision**: 4 types with varying penalties
+- **LLM decisions**: Every 0.5 seconds, async
+- **Graphics**: 60 FPS, sprite-based, 1200x800px
 
 ## Project Philosophy:
 Create an engaging racing simulator where AI agents have distinct personalities and can learn from each other through the data prize system. Balance realism with computational efficiency.
