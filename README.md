@@ -1,6 +1,7 @@
 # AI Racing Simulator 🏎️
 
 A comprehensive AI racing simulator featuring LLM-powered drivers and traditional AI personalities competing in dynamic races with realistic physics, Mario Kart-style power-ups, professional sprite graphics, and strategic intelligence gathering.
+https://youtu.be/85FGEFbLtoM?feature=shared
 
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
